@@ -25,33 +25,30 @@ public class Main {
             System.out.println("Insira a velocidade do trem A (POSITIVA): ");
             velocidadeA = sc.nextDouble();
             if (velocidadeA < 0) {
-                System.out.println("A velocidade do trem deve ser positiva");
+                System.out.println("A velocidade do trem A deve ser positiva");
                 return;
             }
             System.out.println("Insira a velocidade do trem B (NEGATIVA): ");
             velocidadeB = sc.nextDouble();
             if (velocidadeB > 0) {
-                System.out.println("A velocidade do trem deve ser negativa");
+                System.out.println("A velocidade do trem B deve ser negativa");
                 return;
             }
         } catch (InputMismatchException e) {
-            System.out.println("Você inseriu um caractere inválido");
+            System.out.println("Você inseriu um caractere inválido!");
             return;
         }
 
         double tempo = (posicaoA - posicaoB) / (velocidadeB - velocidadeA);
 
         if (tempo >= 0) {
-            double posicaoEncontro = velocidadeA * tempo;
+            double posicaoEncontro = posicaoA + (velocidadeA * tempo);
+            double segundos = tempo * 3600;
 
-            double horas = (posicaoEncontro - posicaoA) / velocidadeA;
-            double minutos = horas * 60;
-            double segundos = minutos * 60;
+            double horasEncontro = 17 + (int)(tempo);
+            double minutosEncontro = (tempo - (int)tempo) * 60;
 
-            double horaInicial = 17;
-            double horaFinal = horaInicial + horas;
-
-            System.out.println("Os trens se encontram no KM:" + posicaoEncontro + "em " + segundos + " segundos");
+            System.out.println("KM " + posicaoEncontro + ", " + segundos + " segundos, " + (int)horasEncontro + " horas e " + (int)minutosEncontro + " minutos.");
 
         } else {
             System.out.println("Os trens nunca se encontrarão.");
